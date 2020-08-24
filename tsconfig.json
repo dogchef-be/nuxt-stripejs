@@ -1,0 +1,21 @@
+{
+  "compilerOptions": {
+    "target": "esnext",
+    "module": "esnext",
+    "moduleResolution": "node",
+    "esModuleInterop": true,
+    "allowJs": false,
+    "sourceMap": true,
+    "declaration": true,
+    "resolveJsonModule": true,
+    "strict": true,
+    "baseUrl": ".",
+    "paths": {
+      "~/*": ["./*"]
+    },
+    "outDir": "dist",
+    "types": ["@nuxt/types"]
+  },
+  "exclude": ["node_modules"],
+  "include": ["lib"]
+}

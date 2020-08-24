@@ -1,0 +1,34 @@
+{
+  "name": "nuxt-stripejs",
+  "version": "1.0.0",
+  "description": "NuxtJS module for Stripe.js",
+  "repository": "dogchef-be/nuxt-stripejs",
+  "license": "MIT",
+  "contributors": [
+    {
+      "name": "Fábio <me@fabiofdsantos.com>"
+    }
+  ],
+  "files": [
+    "dist"
+  ],
+  "main": "dist/module.js",
+  "types": "dist/module.d.ts",
+  "scripts": {
+    "clean": "npm prune && rm -rf dist",
+    "transpile": "tsc",
+    "build": "npm run clean && npm run transpile"
+  },
+  "dependencies": {
+    "@stripe/stripe-js": "^1.9.0"
+  },
+  "devDependencies": {
+    "@nuxt/types": "^2.14.3",
+    "@nuxt/typescript-build": "^0.6.7",
+    "nuxt": "^2.14.3",
+    "typescript": "^3.9.7"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}
