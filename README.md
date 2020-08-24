@@ -60,7 +60,7 @@ It can be used inside components like:
 }
 ```
 
-4. Enjoy!
+Stripe: [JavaScript SDK documentation & reference](https://stripe.com/docs/js)
 
 ## License
 
