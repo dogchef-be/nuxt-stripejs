@@ -1,6 +1,6 @@
 # nuxt-stripejs
 
-![npm](https://img.shields.io/npm/v/nuxt-stripejs?style=flat-square) ![npm](https://img.shields.io/npm/dt/nuxt-stripejs?style=flat-square) ![GitHub](https://img.shields.io/github/license/dogchef-be/nuxt-stripejs?style=flat-square)
+<a href="https://www.npmjs.com/package/nuxt-stripejs"><img src="https://img.shields.io/npm/v/nuxt-stripejs?style=flat-square"></a> <a href="https://www.npmjs.com/package/nuxt-stripejs"><img src="https://img.shields.io/npm/dt/nuxt-stripejs?style=flat-square"></a> <a href="#"><img src="https://img.shields.io/github/license/dogchef-be/nuxt-stripejs?style=flat-square"></a>
 
 NuxtJS module for Stripe.js
 
