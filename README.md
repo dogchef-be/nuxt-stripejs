@@ -36,6 +36,17 @@ stripe: {
 },
 ```
 
+4. (Optional) TypeScript support. Add `nuxt-stripejs` to the `types` section of `tsconfig.json`:
+```json
+{
+  "compilerOptions": {
+    "types": [
+      "nuxt-stripejs"
+    ]
+  }
+}
+```
+
 ## Options
 
 ### `publishableKey`
