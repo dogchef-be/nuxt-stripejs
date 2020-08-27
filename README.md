@@ -18,25 +18,19 @@ NuxtJS module for Stripe.js
 npm install nuxt-stripejs
 ```
 
-2. Add `nuxt-stripejs` to the `modules` section of `nuxt.config.js`:
+2. Add `nuxt-stripejs` module and configuration to `nuxt.config.js`:
 
 ```js
 export default {
-  buildModules: [
-    modules: ["nuxt-stripejs"];
-  ]
+  // ...other config options  
+  modules: ["nuxt-stripejs"];
+  stripe: {
+    publishableKey: 'pk_test_XXXXXXXXXXXXXXX',
+  }
 }
 ```
 
-3. Add `stripe` section to `nuxt.config.js` with module options:
-
-```js
-stripe: {
-  publishableKey: 'pk_test_XXXXXXXXXXXXXXX',
-},
-```
-
-4. (Optional) TypeScript support. Add `nuxt-stripejs` to the `types` section of `tsconfig.json`:
+3. (Optional) TypeScript support. Add `nuxt-stripejs` to the `types` section of `tsconfig.json`:
 ```json
 {
   "compilerOptions": {
