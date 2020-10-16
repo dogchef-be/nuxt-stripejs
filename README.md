@@ -52,6 +52,7 @@ Your Stripe's publishable key.
 ### `i18n`
 
 - Type: `Boolean`
+- Default: `false`
 
 Enable [i18n-module](https://github.com/nuxt-community/i18n-module) integration.
 

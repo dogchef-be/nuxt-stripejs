@@ -9,7 +9,11 @@ declare module "vue/types/vue" {
 
 // eslint-disable-next-line
 export default function StripeModule(this: any): void {
-  const options = this.options.stripe;
+  const defaults = {
+    i18n: false,
+  };
+
+  const options = Object.assign({}, defaults, this.options.stripe);
   if (
     typeof options.publishableKey !== "string" ||
     !options.publishableKey.length
