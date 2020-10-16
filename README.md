@@ -49,6 +49,12 @@ export default {
 
 Your Stripe's publishable key.
 
+### `i18n`
+
+- Type: `Boolean`
+
+Enable [i18n-module](https://github.com/nuxt-community/i18n-module) integration.
+
 ## Usage
 
 It can be used inside components like:

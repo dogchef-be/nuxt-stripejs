@@ -14,7 +14,7 @@
       "~/*": ["./*"]
     },
     "outDir": "dist",
-    "types": ["@nuxt/types"]
+    "types": ["@nuxt/types", "nuxt-i18n"]
   },
   "exclude": ["node_modules"],
   "include": ["lib"]

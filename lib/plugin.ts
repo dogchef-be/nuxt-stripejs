@@ -1,22 +1,19 @@
 import { loadStripe } from '@stripe/stripe-js/pure'
 import { Plugin } from '@nuxt/types'
-import type { Stripe } from '@stripe/stripe-js'
+import type { Stripe, StripeElementLocale, CheckoutLocale } from '@stripe/stripe-js'
 
 let stripe: Stripe | null
 
-export async function getStripeInstance(): Promise<Stripe | null> {
-  let locale
+export async function getStripeInstance(locale?: StripeElementLocale | CheckoutLocale): Promise<Stripe | null> {
+  if (!stripe) {
+    if (!locale && "<%= options.i18n %>") {
+      locale = window.$nuxt.$i18n.locale as StripeElementLocale | CheckoutLocale
+    }
 
-  const i18n = "<%= options.i18n %>"
-
-  if (i18n === "true") {
-    locale = window.$nuxt.$i18n.locale
-  }
-
-  if (!stripe)
     stripe = await loadStripe("<%= options.publishableKey %>", {
-      locale: locale,
+      locale,
     })
+  }
 
   return stripe
 }
