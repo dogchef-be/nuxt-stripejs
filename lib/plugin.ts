@@ -4,9 +4,13 @@ import type { Stripe, StripeElementLocale, CheckoutLocale } from '@stripe/stripe
 
 let stripe: Stripe | null
 
+function _isTrue(val: string): boolean {
+  return val === "true";
+}
+
 export async function getStripeInstance(locale?: StripeElementLocale | CheckoutLocale): Promise<Stripe | null> {
   if (!stripe) {
-    if (!locale && "<%= options.i18n %>") {
+    if (!locale && _isTrue("<%= options.i18n %>")) {
       locale = window.$nuxt.$i18n.locale as StripeElementLocale | CheckoutLocale
     }
 
