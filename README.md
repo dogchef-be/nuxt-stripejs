@@ -6,7 +6,7 @@ NuxtJS module for Stripe.js
 
 ## Main features
 
-- Load Stripe.js only when required
+- Load Stripe.js only when required (once `$stripe()` is called)
 - Reuse the same instance across all components
 - TypeScript support
 
