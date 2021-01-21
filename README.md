@@ -60,6 +60,14 @@ Enable [i18n-module](https://github.com/nuxt-community/i18n-module) integration.
 
 It can be used inside components like:
 
+```html
+<template>
+  <div>
+    <div ref="stripeElements" />
+  </div>
+<template>
+```
+
 ```js
 {
   async mounted() {
@@ -67,7 +75,7 @@ It can be used inside components like:
     const elements = stripe.elements()
 
     const card = elements.create('card')
-    card.mount('card-element');
+    card.mount(this.$refs.stripeElements)
   }
 }
 ```
