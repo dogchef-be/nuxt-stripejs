@@ -6,3 +6,6 @@ node_modules
 .vscode
 .DS_Store
 dist
+docker-compose.yml
+docker-sync.yml
+.docker
