@@ -1,6 +1,6 @@
 import { loadStripe } from '@stripe/stripe-js/pure'
 import { Plugin } from '@nuxt/types'
-import type { Stripe, StripeElementLocale, CheckoutLocale } from '@stripe/stripe-js'
+import { Stripe, StripeElementLocale, CheckoutLocale } from '@stripe/stripe-js'
 
 let stripe: Stripe | null
 

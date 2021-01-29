@@ -1,9 +1,9 @@
-import path from "path";
-import { getStripeInstance } from "./plugin";
+import path from 'path'
+import { getStripeInstance } from './plugin'
 
-declare module "vue/types/vue" {
+declare module 'vue/types/vue' {
   interface Vue {
-    $stripe: typeof getStripeInstance;
+    $stripe: typeof getStripeInstance
   }
 }
 
@@ -11,19 +11,19 @@ declare module "vue/types/vue" {
 export default function StripeModule(this: any): void {
   const defaults = {
     i18n: false,
-  };
+  }
 
-  const options = Object.assign({}, defaults, this.options.stripe);
+  const options = Object.assign({}, defaults, this.options.stripe)
   if (
-    typeof options.publishableKey !== "string" ||
+    typeof options.publishableKey !== 'string' ||
     !options.publishableKey.length
   ) {
-    throw new Error("nuxt-stripejs: publishableKey is required");
+    throw new Error('nuxt-stripejs: publishableKey is required')
   }
 
   this.addPlugin({
-    src: path.resolve(__dirname, "plugin.js"),
-    ssr: "false",
+    src: path.resolve(__dirname, 'plugin.js'),
+    ssr: 'false',
     options,
-  });
+  })
 }
