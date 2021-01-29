@@ -1,6 +1,6 @@
 {
   "name": "nuxt-stripejs",
-  "version": "1.0.4",
+  "version": "1.1.0",
   "description": "NuxtJS module for Stripe.js",
   "repository": "dogchef-be/nuxt-stripejs",
   "license": "MIT",
