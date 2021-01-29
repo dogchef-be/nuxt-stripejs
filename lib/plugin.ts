@@ -5,31 +5,39 @@ import type { Stripe, StripeElementLocale, CheckoutLocale } from '@stripe/stripe
 let stripe: Stripe | null
 
 function _isTrue(val: string): boolean {
-  return val === "true";
+  return val === 'true'
 }
 
-function retryDelay(retryCount: number): number {
-  const delay = 2 ** retryCount * 500;
-  return delay + delay * 0.2 * Math.random();
+function delayNextRetry(retryCount: number): Promise<void> {
+  const delay = 2 ** retryCount * 500
+  return new Promise(resolve => {
+    setTimeout(resolve, delay + delay * 0.2 * Math.random())
+  })
 }
 
-export async function getStripeInstance(locale?: StripeElementLocale | CheckoutLocale): Promise<Stripe | null> {
+export async function getStripeInstance(
+  locale?: StripeElementLocale | CheckoutLocale
+): Promise<Stripe | null> {
   if (!stripe) {
-    if (!locale && _isTrue("<%= options.i18n %>")) {
+    if (!locale && _isTrue('<%= options.i18n %>')) {
       locale = window.$nuxt.$i18n.locale as StripeElementLocale | CheckoutLocale
     }
 
-    let retries: number = 0;
+    let retries = 0
+    do {
+      try {
+        stripe = await loadStripe('<%= options.publishableKey %>', { locale })
+      } catch (e) {
+        stripe = null
+        retries++
+        await delayNextRetry(retries)
+      }
+    } while (!stripe && retries < 3)
 
-    while (stripe === null && retries < 3) {
-      setTimeout(async () => {
-        stripe = await loadStripe("<%= options.publishableKey %>", { locale });
-        retries++;
-      }, retryDelay(retries));
-    }
-
-    if (stripe === null && retries === 3) {
-      throw new Error("nuxt-stripejs: error loading Stripe");
+    if (!stripe) {
+      throw new Error(
+        `nuxt-stripejs: Failed to load Stripe.js after ${retries} retries`
+      )
     }
   }
 

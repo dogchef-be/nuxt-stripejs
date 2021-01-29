@@ -8,6 +8,7 @@ NuxtJS module for Stripe.js
 
 - Load Stripe.js only when required (once `$stripe()` is called)
 - Reuse the same instance across all components
+- Retry mechanism to bypass temporary network issues
 - TypeScript support
 
 ## Setup
@@ -22,7 +23,7 @@ npm install nuxt-stripejs
 
 ```js
 export default {
-  // ...other config options  
+  // ...other config options
   modules: ["nuxt-stripejs"];
   stripe: {
     publishableKey: 'pk_test_XXXXXXXXXXXXXXX',
@@ -31,12 +32,11 @@ export default {
 ```
 
 3. (Optional) TypeScript support. Add `nuxt-stripejs` to the `types` section of `tsconfig.json`:
+
 ```json
 {
   "compilerOptions": {
-    "types": [
-      "nuxt-stripejs"
-    ]
+    "types": ["nuxt-stripejs"]
   }
 }
 ```
@@ -65,7 +65,7 @@ It can be used inside components like:
   <div>
     <div ref="stripeElements" />
   </div>
-<template>
+</template>
 ```
 
 ```js
