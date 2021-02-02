@@ -7,6 +7,16 @@ declare module 'vue/types/vue' {
   }
 }
 
+declare module '@nuxt/types' {
+  interface NuxtAppOptions {
+    $stripe: typeof getStripeInstance
+  }
+
+  interface Context {
+    $stripe: typeof getStripeInstance
+  }
+}
+
 // eslint-disable-next-line
 export default function StripeModule(this: any): void {
   const defaults = {
