@@ -23,10 +23,18 @@ export default function StripeModule(this: any): void {
     i18n: false,
   }
 
+  const publicRuntimeConfig = this.nuxt.options.publicRuntimeConfig
   const options = Object.assign({}, defaults, this.options.stripe)
+
   if (
-    typeof options.publishableKey !== 'string' ||
-    !options.publishableKey.length
+      (
+          typeof options.publishableKey !== 'string' ||
+          !options.publishableKey.length
+      ) &&
+      (
+          typeof publicRuntimeConfig.stripe.publishableKey !== 'string' ||
+          !publicRuntimeConfig.stripe.publishableKey.length
+      )
   ) {
     throw new Error('nuxt-stripejs: publishableKey is required')
   }
