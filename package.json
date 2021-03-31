@@ -1,6 +1,6 @@
 {
   "name": "nuxt-stripejs",
-  "version": "1.1.3",
+  "version": "1.1.4",
   "description": "NuxtJS module for Stripe.js",
   "repository": "dogchef-be/nuxt-stripejs",
   "license": "MIT",
@@ -20,13 +20,13 @@
     "build": "npm run clean && npm run transpile"
   },
   "dependencies": {
-    "@stripe/stripe-js": "^1.13.1"
+    "@stripe/stripe-js": "^1.13.2"
   },
   "devDependencies": {
     "@nuxt/types": "^2.15.3",
     "@nuxt/typescript-build": "^2.1.0",
     "nuxt": "^2.15.3",
-    "nuxt-i18n": "^6.21.0",
+    "nuxt-i18n": "^6.22.3",
     "typescript": "^4.2.3"
   },
   "publishConfig": {
