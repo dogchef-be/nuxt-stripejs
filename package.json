@@ -20,14 +20,14 @@
     "build": "npm run clean && npm run transpile"
   },
   "dependencies": {
-    "@stripe/stripe-js": "^1.14.0"
+    "@stripe/stripe-js": "^1.15.0"
   },
   "devDependencies": {
-    "@nuxt/types": "^2.15.4",
+    "@nuxt/types": "^2.15.6",
     "@nuxt/typescript-build": "^2.1.0",
-    "nuxt": "^2.15.4",
+    "nuxt": "^2.15.6",
     "nuxt-i18n": "^6.27.0",
-    "typescript": "^4.2.4"
+    "typescript": "^4.3.2"
   },
   "publishConfig": {
     "access": "public"
