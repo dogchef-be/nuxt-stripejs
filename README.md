@@ -1,8 +1,20 @@
-# nuxt-stripejs
+<h1 align="center">
+  nuxt-stripejs
+</h1>
+<p align="center">
+  NuxtJS module for Stripe.js
+</p>
 
-<a href="https://www.npmjs.com/package/nuxt-stripejs"><img src="https://img.shields.io/npm/v/nuxt-stripejs?style=flat-square"></a> <a href="https://www.npmjs.com/package/nuxt-stripejs"><img src="https://img.shields.io/npm/dt/nuxt-stripejs?style=flat-square"></a> <a href="#"><img src="https://img.shields.io/github/license/dogchef-be/nuxt-stripejs?style=flat-square"></a>
+<p align="center">
+  <a href="https://www.npmjs.com/package/nuxt-stripejs"><img src="https://img.shields.io/npm/v/nuxt-stripejs?style=flat-square"></a> <a href="https://www.npmjs.com/package/nuxt-stripejs"><img src="https://img.shields.io/npm/dt/nuxt-stripejs?style=flat-square"></a> <a href="#"><img src="https://img.shields.io/github/license/dogchef-be/nuxt-stripejs?style=flat-square"></a>
+</p>
 
-NuxtJS module for Stripe.js
+## Table of contents
+- [Main features](#main-features)
+- [Setup](#setup)
+- [Options](#options)
+- [Usage](#usage)
+- [License](#license)
 
 ## Main features
 
