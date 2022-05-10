@@ -20,7 +20,7 @@
     "build": "npm run clean && npm run transpile"
   },
   "dependencies": {
-    "@stripe/stripe-js": "^1.24.0"
+    "@stripe/stripe-js": "^1.29.0"
   },
   "devDependencies": {
     "@nuxt/types": "^2.15.8",
