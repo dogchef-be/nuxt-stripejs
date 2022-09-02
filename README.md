@@ -2,7 +2,7 @@
   nuxt-stripejs
 </h1>
 <p align="center">
-  NuxtJS module for Stripe.js
+  NuxtJS module for Stripe.js with multi-account support
 </p>
 
 <p align="center">
@@ -18,9 +18,11 @@
 
 ## Main features
 
+- Support multiple Stripe accounts
 - Load Stripe.js only when required (once `$stripe()` is called)
 - Reuse the same instance across all components
 - Retry mechanism to bypass temporary network issues
+- Public runtime config
 - TypeScript support
 
 ## Setup
@@ -35,10 +37,24 @@ npm install nuxt-stripejs
 
 ```js
 export default {
-  // ...other config options
+  // append the module
   modules: ["nuxt-stripejs"];
-  stripe: {
-    publishableKey: 'pk_test_XXXXXXXXXXXXXXX',
+  
+  // public runtime config
+  publicRuntimeConfig: {
+    stripe: {
+      i18n: true,
+      accounts: [
+        {
+          id: 'account-a',
+          pubKey: 'pk_test_123',
+        },
+        {
+          id: 'account-b',
+          pubKey: 'pk_test_12345',
+        },
+      ],
+    },
   }
 }
 ```
@@ -55,11 +71,22 @@ export default {
 
 ## Options
 
-### `publishableKey`
+### `accounts`
 
-- Type: `String`
+- Type: `NuxtStripeJsConfig`
+```ts
+interface NuxtStripeJsAccount {
+    id: string
+    pubKey: string
+}
 
-Your Stripe's publishable key.
+interface NuxtStripeJsConfig {
+    i18n: boolean;
+    accounts: NuxtStripeJsAccount[]
+}
+```
+
+Stripe accounts (see an example in setup)
 
 ### `i18n`
 
@@ -91,6 +118,21 @@ It can be used inside components like:
   }
 }
 ```
+
+Multiple stripe accounts support:
+
+```js
+{
+  async mounted() {
+    const stripe = await this.$stripe(conditionX ? 'account-a' : 'account-b')
+    const elements = stripe.elements()
+
+    const card = elements.create('card')
+    card.mount(this.$refs.stripeElements)
+  }
+}
+```
+
 
 Stripe: [JavaScript SDK documentation & reference](https://stripe.com/docs/js)
 

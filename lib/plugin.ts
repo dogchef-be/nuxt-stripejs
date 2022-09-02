@@ -1,12 +1,9 @@
 import { loadStripe } from '@stripe/stripe-js/pure'
 import { Plugin } from '@nuxt/types'
 import { Stripe, StripeElementLocale, CheckoutLocale } from '@stripe/stripe-js'
+import { NuxtStripeJsAccount, NuxtStripeJsConfig } from './@types/config'
 
-let stripe: Stripe | null
-
-function _isTrue(val: string): boolean {
-  return val === 'true'
-}
+const stripeInstances: { accountId: string, instance: Stripe }[] = []
 
 function delayNextRetry(retryCount: number): Promise<void> {
   const delay = 2 ** retryCount * 500
@@ -15,37 +12,68 @@ function delayNextRetry(retryCount: number): Promise<void> {
   })
 }
 
-export async function getStripeInstance(
+function getAccountConfig(accountId?: string) {
+  let account = null;
+  if (accountId) {
+    account = getModuleConfig().accounts.find((account: NuxtStripeJsAccount) => account.id === accountId)
+    if (!account) {
+      throw new Error(`nuxt-stripejs: Configuration not found for account ${accountId}`)
+    }
+  }
+
+  return account ? account : getModuleConfig().accounts[0]
+}
+
+function getStripeInstance(accountId: string): Stripe | null {
+  const stripeInstance = stripeInstances.find((i) => i.accountId === accountId)
+  return stripeInstance ? stripeInstance.instance : null
+}
+
+function getModuleConfig(): NuxtStripeJsConfig {
+  return window.$nuxt.$config.stripe
+}
+
+export async function getStripe(
+  accountId?: string,
   locale?: StripeElementLocale | CheckoutLocale
 ): Promise<Stripe | null> {
-  if (!stripe) {
-    if (!locale && _isTrue('<%= options.i18n %>')) {
+  const accountConfig = getAccountConfig(accountId)
+
+  let instance = getStripeInstance(accountConfig.id)
+  if (!instance) {
+    if (!locale && getModuleConfig().i18n) {
       locale = window.$nuxt.$i18n.locale as StripeElementLocale | CheckoutLocale
     }
 
     let retries = 0
     do {
       try {
-        stripe = await loadStripe('<%= options.publishableKey %>', { locale })
+        instance = await loadStripe(accountConfig.pubKey, { locale })
       } catch (e) {
-        stripe = null
+        instance = null
         retries++
         await delayNextRetry(retries)
       }
-    } while (!stripe && retries < 3)
+    } while (!instance && retries < 3)
 
-    if (!stripe) {
+    if (!instance) {
       throw new Error(
         `nuxt-stripejs: Failed to load Stripe.js after ${retries} retries`
       )
     }
+
+    // Append instance
+    stripeInstances.push({
+      accountId: accountConfig.id,
+      instance: instance
+    })
   }
 
-  return stripe
+  return instance
 }
 
 const stripePlugin: Plugin = (ctx, inject): void => {
-  inject('stripe', getStripeInstance)
+  inject('stripe', getStripe)
 }
 
 export default stripePlugin
